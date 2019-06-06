@@ -91,22 +91,20 @@ d3.csv("data.csv").then(function(usData) {
         .html(function(d) {
           return (`<text><strong>${d.abbr}</strong></text>`);}) ;
     
+
+    // Create axes labels
     chartGroup.append("text")
-        // Position the text
-        // Center the text:
-        // (https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor)
-        .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
-        .attr("text-anchor", "middle")
-        .attr("font-size", "16px")
-        .attr("fill", "green")
-        .text("Income");
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left + 10)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .attr("class", "axisText")
+      .text("Income");
 
     chartGroup.append("text")
-        .attr("transform", `translate(${width / 2}, ${height + margin.top + 37})`)
-        .attr("text-anchor", "middle")
-        .attr("font-size", "16px")
-        .attr("fill", "orange")
-        .text("Healthcare");
+      .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+      .attr("class", "axisText")
+      .text("Healthcare");
 
 
 });
