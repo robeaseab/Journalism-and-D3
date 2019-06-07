@@ -79,6 +79,7 @@ d3.csv("data.csv").then(function(usData) {
 //     .attr("stroke", "orange") 
   
 
+
     chartGroup.append('g')
         .selectAll("dot")
         .data(usData)
@@ -87,9 +88,19 @@ d3.csv("data.csv").then(function(usData) {
         .attr("cx", function (d) { return xScale(d.income); } )
         .attr("cy", function (d) { return yScale(d.healthcare); } )
         .attr("r", 10.0)
-        .style("fill", "#69b3a2")
-        .html(function(d) {
-          return (`<text><strong>${d.abbr}</strong></text>`);}) ;
+        .style("fill", "#69b3a2");
+    
+
+    chartGroup.append('g')
+        .selectAll('dot')
+        .data(usData)
+        .enter()
+        .append("text")
+        .classed("circle-text", true)
+        .attr("x", function (d) {return xScale(d.income) - 5  ;} )
+        .attr("y", function (d) {return yScale(d.healthcare) + 4; })
+        .style("fill", "black")
+        .text(function(d) {return (d.abbr);});
     
 
     // Create axes labels
@@ -105,8 +116,7 @@ d3.csv("data.csv").then(function(usData) {
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
       .text("Healthcare");
-
-
+      
 });
 
 
